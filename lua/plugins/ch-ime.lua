@@ -2,6 +2,7 @@ return {
   {
     "Aevox121/ch-ime.nvim",
     main = "ch-ime",
+    -- Lazy-load on commands/keys
     cmd = {
       "ChImeToggle",
       "ChImeEnable",
@@ -14,11 +15,8 @@ return {
       enabled = false,
       im_select = "auto",
       install = { on_startup = true },
-      -- [MANUAL] Set your IM identifiers:
-      --   Windows: normal_im = "1033", insert_im = "2052"
-      --   macOS:   normal_im = "com.apple.keylayout.ABC", insert_im = "com.apple.inputmethod.SCIM.ITABC"
-      normal_im = "",
-      insert_im = "",
+      normal_im = "1033",
+      insert_im = "2052",
     },
     keys = {
       {

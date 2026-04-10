@@ -1,8 +1,3 @@
--- [MANUAL] Configure the `dev` paths below to match your local project directories.
--- Example:
---   Windows: dev = { "D:/Projects", "D:/Work" },
---   macOS:   dev = { "~/Projects", "~/Work" },
-
 return {
   {
     "folke/snacks.nvim",
@@ -10,7 +5,7 @@ return {
       picker = {
         sources = {
           projects = {
-            dev = {},
+            dev = { "D:/Projects", "D:/Work" },
             max_depth = 4,
             patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
             recent = true,
@@ -18,7 +13,7 @@ return {
               picker:close()
               vim.cmd("tcd " .. vim.fn.fnameescape(item.file))
 
-              -- If a persistence session exists, restore it; otherwise open file picker
+              -- Check if a persistence session exists for this project
               local session_dir = vim.fn.stdpath("state") .. "/sessions/"
               local path = item.file:gsub("[/\\]+$", "")
               local encoded = path:gsub("[/\\:]", "%%") .. ".vim"
