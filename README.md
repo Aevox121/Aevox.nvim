@@ -109,7 +109,7 @@ git update-index --no-skip-worktree lua/config/options.lua
 | which-key.nvim | 快捷键提示 |
 | mini.nvim | 图标等实用工具 |
 | ch-ime.nvim | 中英文输入法自动切换 |
-| four-claude | 多窗口 Claude CLI |
+| four-claude.nvim | 多窗口 Claude CLI |
 | claudecode.nvim | Claude Code 编辑器集成 |
 | opencode.nvim | OpenCode AI 集成 |
 | persistence.nvim | 会话管理（LazyVim 内置） |
