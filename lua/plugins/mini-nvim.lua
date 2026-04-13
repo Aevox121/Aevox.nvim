@@ -1,7 +1,7 @@
 return {
   { 'nvim-mini/mini.nvim', version = false },
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     opts = { silent = true },
   },
 }

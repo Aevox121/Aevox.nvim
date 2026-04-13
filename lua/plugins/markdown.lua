@@ -4,7 +4,7 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "echasnovski/mini.nvim", -- 图标支持
+      "nvim-mini/mini.nvim", -- 图标支持
     },
     ft = "markdown",
     opts = {},
