@@ -13,12 +13,9 @@ return {
               picker:close()
               vim.cmd("tcd " .. vim.fn.fnameescape(item.file))
 
-              -- Check if a persistence session exists for this project
-              local session_dir = vim.fn.stdpath("state") .. "/sessions/"
-              local path = item.file:gsub("[/\\]+$", "")
-              local encoded = path:gsub("[/\\:]", "%%") .. ".vim"
-
-              if vim.fn.filereadable(session_dir .. encoded) == 1 then
+              -- Use persistence.nvim's own path encoding to find the session file
+              local session_file = require("persistence").current()
+              if vim.fn.filereadable(session_file) == 1 then
                 require("persistence").load()
               else
                 Snacks.picker.files()
