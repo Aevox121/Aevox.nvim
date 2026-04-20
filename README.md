@@ -6,7 +6,7 @@
 
 | 插件 | 作用 | 主要键位 |
 |---|---|---|
-| [leap-pinyin.nvim](https://github.com/Aevox121/leap-pinyin.nvim) | 中文拼音跳转（默认小鹤双拼，`s`/`S` 同时匹配英文和中文） | `s` 前跳，`S` 后跳（`flash.nvim` 同名映射已禁用） |
+| [leap-pinyin.nvim](https://github.com/Aevox121/leap-pinyin.nvim) | 中文拼音跳转（默认小鹤双拼，`s`/`S` 同时匹配英文和中文） | `s` 后跳，`S` 前跳（`flash.nvim` 同名映射已禁用） |
 | [ch-ime.nvim](https://github.com/Aevox121/ch-ime.nvim) | 进出 Insert 模式时自动切换 Windows 输入法 | `<leader>ui` 开关 |
 | [four-claude](https://github.com/Aevox121/four-claude) | 终端内 4 分屏同时管理 Claude Code 会话 | `<leader>C` 开关、`<leader>cp` pin 侧栏 |
 | [obsidian-link.nvim](https://github.com/Aevox121/obsidian-link.nvim) | 在 Markdown buffer 跟随 `[[wikilink]]` 跳转 | `:ObsidianFollow` |
