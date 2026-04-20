@@ -1,6 +1,6 @@
 return {
   {
-    dir = "D:/Projects/LazyVimPlugs/four-claude",
+    dir = "D:/Projects/Work/Dev/LazyVimPlugs/four-claude",
     config = function()
       require("four-claude").setup({
         cmd = "claude",
@@ -13,6 +13,7 @@ return {
     end,
     keys = {
       { "<leader>C", "<cmd>FourClaudeToggle<cr>", desc = "Toggle 4 Claude windows" },
+      { "<leader>cp", "<cmd>FourClaudePin<cr>", desc = "Pin/unpin Claude pane to sidebar" },
     },
   },
 }

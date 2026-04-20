@@ -1,9 +1,9 @@
 return {
   {
-    dir = "D:/Projects/LazyVimPlugs/obsidian-link.nvim",
+    dir = "D:/Projects/Work/Dev/LazyVimPlugs/obsidian-link.nvim",
     main = "obsidian-link",
     ft = "markdown",
-    cmd = { "ObsidianFollow", "ObsidianClearCache" },
+    cmd = { "ObsidianFollow", "ObsidianOpenUrl", "ObsidianClearCache" },
     opts = {},
   },
 }
