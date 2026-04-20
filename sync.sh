@@ -4,7 +4,7 @@
 #   ./sync.sh push   - AppData → Aevox.nvim (default, for committing)
 #   ./sync.sh pull   - Aevox.nvim → AppData  (after pulling from remote)
 
-REPO="D:/Projects/LazyVimPlugs/Aevox.nvim"
+REPO="D:/Projects/Work/Dev/LazyVimPlugs/Aevox.nvim"
 NVIM="C:/Users/Win11/AppData/Local/nvim"
 EXCLUDE=(.git .claude sync.sh)
 

@@ -12,7 +12,7 @@ return {
       "ChImeStatus",
     },
     opts = {
-      enabled = false,
+      enabled = true,
       im_select = "auto",
       install = { on_startup = true },
       normal_im = "1033",
