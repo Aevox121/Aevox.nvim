@@ -14,7 +14,7 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" 
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
 -- Reveal current file in Windows Explorer
-vim.keymap.set("n", "<leader>fo", function()
+vim.keymap.set("n", "gX", function()
   local path = vim.fn.expand("%:p")
   if path == "" then
     vim.fn.jobstart({ "explorer.exe", vim.fn.getcwd() }, { detach = true })
