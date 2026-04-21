@@ -13,4 +13,14 @@ end, { desc = "Find files by selection" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
+-- Reveal current file in Windows Explorer
+vim.keymap.set("n", "<leader>fo", function()
+  local path = vim.fn.expand("%:p")
+  if path == "" then
+    vim.fn.jobstart({ "explorer.exe", vim.fn.getcwd() }, { detach = true })
+  else
+    vim.fn.jobstart({ "explorer.exe", "/select,", path }, { detach = true })
+  end
+end, { desc = "Reveal in Explorer" })
+
 
