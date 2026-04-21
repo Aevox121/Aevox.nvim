@@ -1,3 +1,13 @@
+local function reveal_in_explorer(_, item)
+  if not item or not item.file then return end
+  local path = vim.fn.fnamemodify(item.file, ":p")
+      :gsub("/", "\\"):gsub("\\+$", "")
+  vim.fn.jobstart(
+    { "cmd.exe", "/c", "start", "", "explorer", "/select," .. path },
+    { detach = true }
+  )
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -21,6 +31,12 @@ return {
                 Snacks.picker.files()
               end
             end,
+          },
+          explorer = {
+            actions = { reveal_in_explorer = reveal_in_explorer },
+            win = {
+              list = { keys = { ["gx"] = "reveal_in_explorer" } },
+            },
           },
         },
       },
