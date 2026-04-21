@@ -6,7 +6,12 @@
 
 REPO="D:/Projects/Work/Dev/LazyVimPlugs/Aevox.nvim"
 NVIM="C:/Users/Win11/AppData/Local/nvim"
-EXCLUDE=(.git .claude sync.sh)
+EXCLUDE=(.git .claude .gitignore sync.sh)
+
+# Paths (relative to nvim root) that are local-only: live in AppData only,
+# never in the published repo. Used for machine-specific overrides like
+# `lua/config/lazy-local.lua` (dev plugin paths).
+LOCAL_ONLY=(lua/config/lazy-local.lua)
 
 should_exclude() {
   local name="$1"
@@ -38,15 +43,44 @@ sync_dir() {
   done
 }
 
+backup_local_only() {
+  BACKUP_DIR=$(mktemp -d)
+  for rel in "${LOCAL_ONLY[@]}"; do
+    if [ -f "$NVIM/$rel" ]; then
+      mkdir -p "$BACKUP_DIR/$(dirname "$rel")"
+      cp "$NVIM/$rel" "$BACKUP_DIR/$rel"
+    fi
+  done
+}
+
+restore_local_only() {
+  for rel in "${LOCAL_ONLY[@]}"; do
+    if [ -f "$BACKUP_DIR/$rel" ]; then
+      mkdir -p "$NVIM/$(dirname "$rel")"
+      cp "$BACKUP_DIR/$rel" "$NVIM/$rel"
+    fi
+  done
+  rm -rf "$BACKUP_DIR"
+}
+
+strip_local_only_from_repo() {
+  for rel in "${LOCAL_ONLY[@]}"; do
+    rm -f "$REPO/$rel"
+  done
+}
+
 case "${1:-push}" in
   push)
     echo "Syncing: AppData/nvim -> Aevox.nvim"
     sync_dir "$NVIM" "$REPO"
+    strip_local_only_from_repo
     echo "Done. Run 'git add/commit/push' in Aevox.nvim."
     ;;
   pull)
     echo "Syncing: Aevox.nvim -> AppData/nvim"
+    backup_local_only
     sync_dir "$REPO" "$NVIM"
+    restore_local_only
     echo "Done. Neovim config updated."
     ;;
   *)

@@ -14,7 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+local opts = {
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -31,11 +31,6 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  dev = {
-    path = "D:/Projects/Work/Dev/LazyVimPlugs",
-    patterns = { "Aevox121" },
-    fallback = true,
-  },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
@@ -55,4 +50,12 @@ require("lazy").setup({
       },
     },
   },
-})
+}
+
+-- Local-only overrides (e.g. dev plugin paths); gitignored, absent on fresh clones
+local ok, local_opts = pcall(require, "config.lazy-local")
+if ok and type(local_opts) == "table" then
+  opts = vim.tbl_deep_extend("force", opts, local_opts)
+end
+
+require("lazy").setup(opts)
