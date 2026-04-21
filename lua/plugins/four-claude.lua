@@ -1,6 +1,7 @@
 return {
   {
-    dir = "D:/Projects/Work/Dev/LazyVimPlugs/four-claude",
+    "Aevox121/four-claude.nvim",
+    main = "four-claude",
     config = function()
       require("four-claude").setup({
         cmd = "claude",
