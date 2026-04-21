@@ -4,19 +4,7 @@
 
 -- telescope
 local builtin = require("telescope.builtin")
-
--- Reveal an absolute path in Windows Explorer (parent folder + selection).
-local function reveal_in_explorer(path)
-  if not path or path == "" then return end
-  path = vim.fn.fnamemodify(path, ":p"):gsub("/", "\\"):gsub("\\+$", "")
-  local job = vim.fn.jobstart(
-    { "cmd.exe", "/c", "start", "", "explorer", "/select," .. path },
-    { detach = true }
-  )
-  if job <= 0 then
-    vim.notify("Failed to open Explorer: " .. path, vim.log.levels.ERROR)
-  end
-end
+local reveal = require("util.reveal").reveal
 
 -- In a telescope picker, press `gx` (normal mode) to reveal the highlighted
 -- entry in Windows Explorer.
@@ -30,7 +18,7 @@ local function reveal_attach()
             or (type(entry.value) == "string" and entry.value) or nil
         if not path then return end
         require("telescope.actions").close(prompt_bufnr)
-        reveal_in_explorer(path)
+        reveal(path)
       end)
       return true
     end,
