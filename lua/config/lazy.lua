@@ -31,6 +31,11 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
+  dev = {
+    path = "D:/Projects/Work/Dev/LazyVimPlugs",
+    patterns = { "Aevox121" },
+    fallback = true,
+  },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
