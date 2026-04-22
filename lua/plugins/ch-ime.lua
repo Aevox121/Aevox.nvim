@@ -15,8 +15,14 @@ return {
       enabled = true,
       im_select = "auto",
       install = { on_startup = true },
-      normal_im = "1033",
-      insert_im = "2052",
+      normal_im = {
+        windows = "1033",
+        macos = "com.apple.keylayout.ABC",
+      },
+      insert_im = {
+        windows = "2052",
+        macos = "com.sogou.inputmethod.sogou.pinyin",
+      },
     },
     keys = {
       {

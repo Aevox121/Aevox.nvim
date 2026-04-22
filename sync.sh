@@ -69,9 +69,27 @@ strip_local_only_from_repo() {
   done
 }
 
+# Fail if any plugin spec hardcodes a local absolute path (e.g. `dir = "D:/..."`).
+# Self-developed plugins must use the `"Aevox121/<repo>"` form so fresh clones
+# can resolve them from GitHub; local dev override is handled by `lazy-local.lua`
+# via lazy.nvim's `dev.patterns = { "Aevox121" }` mechanism.
+check_no_hardcoded_dirs() {
+  local offenders
+  offenders=$(grep -rnE 'dir[[:space:]]*=[[:space:]]*"[A-Za-z]:[/\\]' "$NVIM/lua/plugins" 2>/dev/null || true)
+  if [ -n "$offenders" ]; then
+    echo "ERROR: 发现硬编码本地路径，会污染发布 repo：" >&2
+    echo "$offenders" >&2
+    echo "" >&2
+    echo "改为 GitHub 路径（\"Aevox121/xxx.nvim\"），本地开发靠 lazy-local.lua 的 dev.patterns 覆盖。" >&2
+    return 1
+  fi
+  return 0
+}
+
 case "${1:-push}" in
   push)
     echo "Syncing: AppData/nvim -> Aevox.nvim"
+    check_no_hardcoded_dirs || exit 1
     sync_dir "$NVIM" "$REPO"
     strip_local_only_from_repo
     echo "Done. Run 'git add/commit/push' in Aevox.nvim."

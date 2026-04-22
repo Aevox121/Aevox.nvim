@@ -9,7 +9,7 @@ return {
   },
 
   {
-    dir = "D:/Projects/Work/Dev/LazyVimPlugs/leap-pinyin.nvim",
+    "Aevox121/leap-pinyin.nvim",
     name = "leap-pinyin",
     event = "VeryLazy",
     config = function()
