@@ -3,6 +3,8 @@ local function reveal_in_explorer(_, item)
   require("util.reveal").reveal(item.file)
 end
 
+local project_roots = vim.fn.has("win32") == 1 and { "D:/Projects", "D:/Work" } or { "~/Projects" }
+
 return {
   {
     "folke/snacks.nvim",
@@ -10,7 +12,7 @@ return {
       picker = {
         sources = {
           projects = {
-            dev = { "D:/Projects", "D:/Work" },
+            dev = project_roots,
             max_depth = 4,
             patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
             recent = true,
