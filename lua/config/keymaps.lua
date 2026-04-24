@@ -37,3 +37,13 @@ vim.keymap.set("x", "<leader>ff", function()
 end, { desc = "Find files by selection" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+
+-- Tab navigation (normal + terminal mode). Works in any buffer, including
+-- fourclaude's embedded-zellij :terminal. `<M-,>` / `<M-.>` chosen instead of
+-- `<M-[>` / `<M-]>` because `Alt+[` sends `ESC [` which is the CSI prefix for
+-- arrow keys and F-keys — binding it makes nvim wait ttimeoutlen on every
+-- arrow press. And instead of `<M-h>` / `<M-l>` because those collide with
+-- zellij's default pane-switch inside fourclaude.
+-- Requires Ghostty `macos-option-as-alt = true` on mac.
+vim.keymap.set({ "n", "t" }, "<M-,>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+vim.keymap.set({ "n", "t" }, "<M-.>", "<cmd>tabnext<cr>", { desc = "Next tab" })
