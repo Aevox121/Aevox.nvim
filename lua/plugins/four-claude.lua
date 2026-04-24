@@ -4,7 +4,12 @@ return {
     main = "four-claude",
     config = function()
       require("four-claude").setup({
-        cmd = "claude",
+        agents = {
+          claude   = { cmd = "claude" },
+          opencode = { cmd = "opencode" },
+          codex    = { cmd = "codex" },
+        },
+        default_agent = "claude",
         alert = {
           enabled = true,
           delay = 5000,
@@ -13,8 +18,10 @@ return {
       })
     end,
     keys = {
-      { "<leader>C", "<cmd>FourClaudeToggle<cr>", desc = "Toggle 4 Claude windows" },
-      { "<leader>cp", "<cmd>FourClaudePin<cr>", desc = "Pin/unpin Claude pane to sidebar" },
+      { "<leader>C",  "<cmd>FourClaudeToggle<cr>",          desc = "Toggle 4 Claude windows" },
+      { "<leader>cO", "<cmd>FourClaudeToggle opencode<cr>", desc = "Toggle 4 opencode windows" },
+      { "<leader>cX", "<cmd>FourClaudeToggle codex<cr>",    desc = "Toggle 4 codex windows" },
+      { "<leader>cp", "<cmd>FourClaudePin<cr>",             desc = "Pin/unpin Claude pane to sidebar" },
     },
   },
 }
