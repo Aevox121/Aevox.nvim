@@ -17,4 +17,14 @@ return {
       ensure_installed = { "markdown", "markdown_inline" },
     },
   },
+
+  -- Markdown 禁用自动补全（含菜单与 ghost text 建议）
+  {
+    "saghen/blink.cmp",
+    opts = {
+      enabled = function()
+        return vim.bo.filetype ~= "markdown"
+      end,
+    },
+  },
 }
