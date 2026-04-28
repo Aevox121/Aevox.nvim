@@ -47,3 +47,16 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 -- Requires Ghostty `macos-option-as-alt = true` on mac.
 vim.keymap.set({ "n", "t" }, "<M-,>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 vim.keymap.set({ "n", "t" }, "<M-.>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+
+-- dm{a-zA-Z} to delete a mark. Press dm, then a single char to pick which.
+-- <Esc> aborts.
+vim.keymap.set("n", "dm", function()
+  local ok, c = pcall(vim.fn.getcharstr)
+  if not ok or c == "" or c == "\27" then return end -- <Esc>
+  if not c:match("^[%a]$") then
+    vim.notify("dm: expected a-z or A-Z, got " .. vim.inspect(c), vim.log.levels.WARN)
+    return
+  end
+  vim.cmd("delmarks " .. c)
+  vim.notify("deleted mark " .. c)
+end, { desc = "Delete mark (dm{a-zA-Z})" })
