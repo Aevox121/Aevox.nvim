@@ -23,6 +23,11 @@ return {
         windows = "2052",
         macos = "com.sogou.inputmethod.sogou.pinyin",
       },
+      -- 默认会排除 TelescopePrompt 和 prompt/nofile buftype，picker 输入框就被
+      -- 挡掉了。这里都清空，<leader>ff / <leader>sb / <leader>fg 打开 picker
+      -- 时进 insert 模式即切中文，方便搜中文内容。
+      exclude_filetypes = {},
+      exclude_buftype = {},
     },
     keys = {
       {

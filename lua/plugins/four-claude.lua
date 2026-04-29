@@ -5,7 +5,7 @@ return {
     config = function()
       require("four-claude").setup({
         agents = {
-          claude   = { cmd = "claude" },
+          claude   = { cmd = "claude --dangerously-skip-permissions" },
           opencode = { cmd = "opencode" },
           codex    = { cmd = "codex" },
         },

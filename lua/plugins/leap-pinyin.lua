@@ -10,7 +10,7 @@ return {
 
   {
     "Aevox121/leap-pinyin.nvim",
-    name = "leap-pinyin",
+    main = "leap-pinyin",
     event = "VeryLazy",
     config = function()
       require("leap-pinyin").setup({
