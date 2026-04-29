@@ -48,6 +48,24 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 vim.keymap.set({ "n", "t" }, "<M-,>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 vim.keymap.set({ "n", "t" }, "<M-.>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
+-- <leader>ch in markdown: toggle `- [ ]` <-> `- [x]` on the current line.
+-- Buffer-local so it doesn't shadow the global <leader>c (code) group elsewhere.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function(ev)
+    vim.keymap.set("n", "<leader>ch", function()
+      local line = vim.api.nvim_get_current_line()
+      local new = line
+      if line:match("^%s*[%-%*%+]%s*%[ %]") then
+        new = line:gsub("(%[)( )(%])", "%1x%3", 1)
+      elseif line:match("^%s*[%-%*%+]%s*%[[xX]%]") then
+        new = line:gsub("(%[)[xX](%])", "%1 %2", 1)
+      end
+      if new ~= line then vim.api.nvim_set_current_line(new) end
+    end, { buffer = ev.buf, desc = "Toggle markdown checkbox" })
+  end,
+})
+
 -- dm{a-zA-Z} to delete a mark. Press dm, then a single char to pick which.
 -- <Esc> aborts.
 vim.keymap.set("n", "dm", function()
