@@ -7,7 +7,6 @@ return {
         agents = {
           claude   = { cmd = "claude --dangerously-skip-permissions" },
           opencode = { cmd = "opencode" },
-          codex    = { cmd = "codex" },
         },
         default_agent = "claude",
         alert = {
@@ -20,7 +19,7 @@ return {
     keys = {
       { "<leader>C",  "<cmd>FourClaudeToggle<cr>",          desc = "Toggle 4 Claude windows" },
       { "<leader>cO", "<cmd>FourClaudeToggle opencode<cr>", desc = "Toggle 4 opencode windows" },
-      { "<leader>cX", "<cmd>FourClaudeToggle codex<cr>",    desc = "Toggle 4 codex windows" },
+      { "<leader>cX", "<cmd>FourCodexToggle<cr>",          desc = "Toggle 4 Codex windows" },
       { "<leader>cp", "<cmd>FourClaudePin<cr>",             desc = "Pin/unpin Claude pane to sidebar" },
     },
   },

@@ -11,6 +11,8 @@ return {
     opts = {
       picker = {
         sources = {
+          files = { hidden = true },
+          grep = { hidden = true },
           projects = {
             dev = project_roots,
             max_depth = 4,

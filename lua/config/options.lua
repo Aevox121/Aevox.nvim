@@ -4,6 +4,6 @@
 
 vim.opt.spell = false
 
-vim.o.guifont = "CodeNewRoman Nerd Font Mono:h14"
+vim.o.guifont = "CodeNewRoman Nerd Font Mono,思源宋体:h14"
 
 vim.opt.fileformats = "unix,dos"

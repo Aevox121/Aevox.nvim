@@ -5,14 +5,15 @@
 -- with `vim.api.nvim_create_autocmd`
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- 删掉 LazyVim 的 wrap_spell 组：原版会在 markdown/text/tex 里同时开 wrap + spell，
--- 中文/中英混排下 spell 会到处标红波浪线，太吵。下面手动只开 wrap，不开 spell。
 vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "text" },
+  group = vim.api.nvim_create_augroup("user_wrap_only", { clear = true }),
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+    vim.opt_local.spell = false
   end,
 })
 

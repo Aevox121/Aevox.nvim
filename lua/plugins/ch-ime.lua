@@ -28,6 +28,12 @@ return {
       -- 时进 insert 模式即切中文，方便搜中文内容。
       exclude_filetypes = {},
       exclude_buftype = {},
+      -- Neovide 失/获焦各触发一次 IM 切换；alt-tab 或系统弹窗都会连发。关掉
+      -- 后只在真正进入/离开 insert/terminal 时切。
+      restore_on_focus_lost = false,
+      -- 默认 50ms 太短挡不住 fourclaude WinEnter→startinsert 引发的连发
+      -- (TermEnter + InsertEnter + ModeChanged 同时触发)。
+      debounce_ms = 250,
     },
     keys = {
       {
